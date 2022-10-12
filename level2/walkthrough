@@ -46,6 +46,7 @@ For the address, we cannot use an address located on the stack, because of this 
    0x08048505 <+49>:	jne    0x8048527 <p+83>
 
 If the address starts with 0xb, it  will exit the program.
+https://infosecwriteups.com/expdev-exploit-exercise-protostar-stack-6-ef75472ec7c6
 
 level2@RainFall:~$ ltrace ./level2 
 __libc_start_main(0x804853f, 1, 0xbffff7f4, 0x8048550, 0x80485c0 <unfinished ...>
