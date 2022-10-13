@@ -4,7 +4,6 @@
 
 char	*p(void)
 {
-	char *ptr;
 	char buf[80];
 	unsigned int *return_addr;
 
@@ -20,8 +19,7 @@ char	*p(void)
 	}
 
 	puts(buf);
-	ptr = (char *)strdup(buf);
-	return ptr;
+	return strdup(buf);
 }
 
 
