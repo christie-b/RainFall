@@ -14,14 +14,14 @@ void m()
 
 int main(int argc, char **argv)
 {
-	void (*ptr2)();
-	void *ptr1;
+	unsigned int *ptr2;
+	char *ptr1;
 
 	ptr1 = malloc(64);
 	ptr2 = malloc(4);
-
-	ptr2 = &m;
-	printf("%ld\n", sizeof(ptr2));
+	*ptr2 = (unsigned int)m;
+	// printf("ptr2 befire: %u", *ptr2);
 	strcpy(ptr1, argv[1]);
-	(*ptr2)();
+	// printf("ptr2 after: %u", *ptr2);
+	((void (*)())*ptr2)();
 }
