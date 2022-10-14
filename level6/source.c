@@ -20,8 +20,6 @@ int main(int argc, char **argv)
 	ptr1 = malloc(64);
 	ptr2 = malloc(4);
 	*ptr2 = (unsigned int)m;
-	// printf("ptr2 befire: %u", *ptr2);
 	strcpy(ptr1, argv[1]);
-	// printf("ptr2 after: %u", *ptr2);
 	((void (*)())*ptr2)();
 }
