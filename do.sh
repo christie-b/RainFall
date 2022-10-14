@@ -26,16 +26,16 @@ EOF
 
 if [ $# -eq 0 ]
 then
-	echo "Key in an argument, <vm> or <container>."
+	echo "usage: ./do.sh rainfall|clone"
 	exit 1
 fi
 
 case $1 in
-	vm)			startvm
+	rainfall)			startvm
 				;;
-	container)	startcontainer;
+	clone)	startcontainer;
 				;;
-	*)			echo fail;
+	*)			echo "Bad argument.";
 				exit
 				;;
 esac
