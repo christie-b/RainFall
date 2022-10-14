@@ -1,3 +1,6 @@
+#include <stdio.h>
+#include <stdlib.h>
+
 int m;
 
 void p(char *buf)
