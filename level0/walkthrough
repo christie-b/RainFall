@@ -18,6 +18,8 @@ No !
 (gdb) x/s 0x80c5348
 0x80c5348:	 "/bin/sh"
 
+-------------------------------
+
 Execute ./level0 423
 Then you have access to a shell
 cat /home/user/level1/.pass
