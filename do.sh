@@ -7,9 +7,9 @@ startvm()
 	do
 		printf "%s: %s\n" $i $(cat $i)
 	done
-	echo "Key in level:"
-	read
-	ssh level${REPLY}@192.168.56.102 -p 4242
+	printf "Key in level: "
+	read reply
+	ssh level${reply}@192.168.56.102 -p 4242
 }
 
 startcontainer()
