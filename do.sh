@@ -17,6 +17,7 @@ startcontainer()
 	DOCKERFILE=$(cat << EOF
 FROM i386/ubuntu:trusty
 RUN apt-get update && apt-get install -y gcc python gdb
+RUN echo "set disassembly-flavor intel" > ~/.gdbinit
 EOF
 	)
 
@@ -31,9 +32,9 @@ then
 fi
 
 case $1 in
-	rainfall)			startvm
+	rainfall)	startvm
 				;;
-	clone)	startcontainer;
+	clone)		startcontainer;
 				;;
 	*)			echo "Bad argument.";
 				exit
