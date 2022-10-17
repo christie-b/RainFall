@@ -102,3 +102,32 @@ fopen("/home/user/level8/.pass", "r")            = 0
 fgets( <unfinished ...>
 --- SIGSEGV (Segmentation fault) ---
 +++ killed by SIGSEGV +++
+
+
+--> the main stores the pass file in the c variable, but doesn't print it.
+We need to call the m function that is not called, but that prints the c variable.
+
+Let's try to call the m function instead of the puts function.
+
+Address of m: 0x080484f4
+Address of puts in the GOT, as the address in the PLT is read-only: 0x08049928
+/*
+level7@RainFall:~$ objdump -R ./level7
+./level7:     file format elf32-i386
+
+DYNAMIC RELOCATION RECORDS
+OFFSET   TYPE              VALUE
+08049928 R_386_JUMP_SLOT   puts
+*/
+
+-> we need to replace the address of puts by the address of m.
+man strcy:
+ If the destination string of a strcpy() is not large enough, then anything might happen.  Overflowing fixed-length string buffers is a favorite cracker technique for taking complete control of the machine.
+
+We can overflow with strcpy.
+Overflow offset:
+
+./level7 arg1 arg2
+arg1 = x padding to overflow into 3rd malloc, and replace ptr2[1] with address of puts
+arg2 = address of m
+-> so that we have strcpy(dest: &puts, src: &m), so when we call puts("~~"), we will call m in reality.
