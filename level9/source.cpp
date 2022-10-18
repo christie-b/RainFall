@@ -27,8 +27,8 @@ class N
 	}
 
 	private:
+	char buf[100];
 	int	number;
-	char buf[108];
 };
 
 
@@ -40,8 +40,10 @@ int main(int argc, char **argv)
 	N *nb1 = new N(5);
 	N *nb2 = new N(6);
 
-	nb1->setAnnotation(argv[1]);
+	N *nb3 = nb2;
+	N *nb4 = nb1;    
 
-	*nb1 + *nb2;
-	return (0);
+	nb3->setAnnotation(argv[1]);
+
+	*nb3 + *nb4;
 }

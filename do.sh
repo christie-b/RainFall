@@ -7,16 +7,16 @@ startvm()
 	do
 		printf "%s: %s\n" $i $(cat $i)
 	done
-	printf "Key in level: "
+	printf "Key in user: "
 	read reply
-	ssh level${reply}@192.168.56.102 -p 4242
+	ssh ${reply}@192.168.56.102 -p 4242
 }
 
 startcontainer()
 {
 	DOCKERFILE=$(cat << EOF
 FROM i386/ubuntu:trusty
-RUN apt-get update && apt-get install -y gcc python gdb
+RUN apt-get update && apt-get install -y gcc python gdb g++ ltrace
 RUN echo "set disassembly-flavor intel" > ~/.gdbinit
 EOF
 	)
