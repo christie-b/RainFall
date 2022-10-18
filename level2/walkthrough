@@ -37,7 +37,7 @@ disas p
 However, there is no syscall to /bin/sh to allow us to access a shell.
 -> use a shellcode
 We segfault at 80 we will therefore have something like:
- print '\x90' * x + 'shellcode' + address (\x90 = NOP code)
+ print '\x90' * x + 'shellcode' + buffer_address (\x90 = NOP code)
  The shellcode we found has a length of 45, we will therefore print 35 A (80 - 45).
 
 For the address, we cannot use an address located on the stack, because of this check:
