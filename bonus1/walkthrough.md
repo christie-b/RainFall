@@ -17,7 +17,7 @@ Dump of assembler code for function main:
    0x08048435 <+17>:	mov    %eax,(%esp)						; move eax to esp (argv[1])
    0x08048438 <+20>:	call   0x8048360 <atoi@plt>				; atoi(esp)
    0x0804843d <+25>:	mov    %eax,0x3c(%esp)					; move return value from atoi to esp+60
-   0x08048441 <+29>:	cmpl   $0x9,0x3c(%esp)					; compare to 9
+   0x08048441 <+29>:	cmpl   $0x9,0x3c(%esp)					; compare to 9 | compare as UNSIGNED int
    0x08048446 <+34>:	jle    0x804844f <main+43>				; if less or equal to 9, jump to 43
    0x08048448 <+36>:	mov    $0x1,%eax						; set eax to 1
    0x0804844d <+41>:	jmp    0x80484a3 <main+127>				; jump to 127
