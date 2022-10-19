@@ -41,7 +41,7 @@ int main(int argc, char **argv)
 	N *nb2 = new N(6);
 
 	N *nb3 = nb2;
-	N *nb4 = nb1;    
+	N *nb4 = nb1;
 
 	nb3->setAnnotation(argv[1]);
 

