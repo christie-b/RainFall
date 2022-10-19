@@ -1,9 +1,11 @@
-
+#include <stdio.h>
+#include <string.h>
+#include <unistd.h>
 
 
 void p(char *buf, char *str)
 {
-	char *buf3[4096];
+	char buf3[4096];
 	char *ret;
 
 	puts(str);
@@ -25,7 +27,7 @@ void	pp(char *buf)
 	strcpy(buf, buf1);
 
 	int i = 0;
-	while (buffer[i])
+	while (buf[i])
 	{
 		i++;
 	}
