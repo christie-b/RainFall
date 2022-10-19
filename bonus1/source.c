@@ -9,7 +9,7 @@ int main (int argc, char **av)
 	if (nb > 9)
 		return (1);
 	memcpy(buf, argv[2], nb * 4);
-	if (nb == 1464814662) //0x574f4c46
+	if (nb == 0x574f4c46)
 	{
 		execl("/bin/sh", "sh", 0);
 	}
