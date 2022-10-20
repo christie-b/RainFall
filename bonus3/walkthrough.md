@@ -1,9 +1,23 @@
+# Walkthrough
+
+
+## Solution
+```
+./bonus3 ""
+```
+
+## Explanation
+
+### Execution
+```
 bonus3@RainFall:~$ ./bonus3 
 bonus3@RainFall:~$ ./bonus3 hello
 
 bonus3@RainFall:~$ ./bonus3 hello you
 bonus3@RainFall:~$ 
+```
 
+### Assembly
 ```
 (gdb) disas main
 Dump of assembler code for function main:

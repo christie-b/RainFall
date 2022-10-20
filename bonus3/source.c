@@ -5,7 +5,7 @@
 
 int main(int argc, char **argv)
 {
-	FILE *file = fopen("test", "r");
+	FILE *file = fopen("flag", "r");
 	int buf[33] = {0};
 
 	// // printf("buf[0] : |%c| | strcmp(buf[0], %s) = %d\n", buf[0], argv[1], strcmp(buf, argv[1]));
