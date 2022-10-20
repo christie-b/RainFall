@@ -17,9 +17,10 @@ startcontainer()
 	DOCKERFILE=$(cat << EOF
 FROM i386/ubuntu:trusty
 RUN apt-get update && apt-get install -y gcc python gdb g++ ltrace
-RUN echo "set disassembly-flavor intel" > ~/.gdbinit
 EOF
 	)
+
+#RUN echo "set disassembly-flavor intel" > ~/.gdbinit
 
 	echo "$DOCKERFILE" | docker build -t rainfall-clone -
 	docker run -ti -v $(pwd):/rainfall -w /rainfall rainfall-clone bash

