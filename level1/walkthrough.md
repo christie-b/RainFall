@@ -114,14 +114,15 @@ overflow the buffer towards higher memory address and probably overwrite previou
 https://0xrick.github.io/binary-exploitation/bof3/
 
 Transform the address to little endian because in general the stack goes from the top of the memory to the bottom,
-thus the "data" you use is always written from low to high
+thus the "data" you use is always written from low to high  
+```
 0A 0B 0C 0D
  |	|  |  |    Memory:
- |  |  |   --> 0D (a)
- |  |   -----> 0C (a+1)
- |   --------> 0B (a+2)
+ | |  |   ---> 0D (a)
+ | |   ------> 0C (a+1)
+ |  ---------> 0B (a+2)
   -----------> 0A (a+3)
   Little endian
-
+```
 
 */
