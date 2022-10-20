@@ -117,9 +117,9 @@ Transform the address to little endian because in general the stack goes from th
 thus the "data" you use is always written from low to high  
 ```
 0A 0B 0C 0D
- |	|  |  |    Memory:
- | |  |   ---> 0D (a)
- | |   ------> 0C (a+1)
+ | | | |    Memory:
+ | | |  ---> 0D (a)
+ | |  ------> 0C (a+1)
  |  ---------> 0B (a+2)
   -----------> 0A (a+3)
   Little endian
