@@ -5,10 +5,10 @@ Dump of assembler code for function v:
    0x080484a7 <+3>:	sub    $0x218,%esp
    0x080484ad <+9>:	mov    0x8049860,%eax
    0x080484b2 <+14>:	   mov    %eax,0x8(%esp)
-   0x080484b6 <+18>:	   movl   $0x200,0x4(%esp)	; store 512 into the 4th offset on the stack (esp) // equivalent to *(%esp + 4)
-   0x080484be <+26>:	   lea    -0x208(%ebp),%eax	; ebp value - 520 is loaded into eax
+   0x080484b6 <+18>:	   movl   $0x200,0x4(%esp)		; store 512 into the 4th offset on the stack (esp) // equivalent to *(%esp + 4)
+   0x080484be <+26>:	   lea    -0x208(%ebp),%eax		; ebp value - 520 is loaded into eax
    0x080484c4 <+32>:	   mov    %eax,(%esp)   
-   0x080484c7 <+35>:	   call   0x80483a0 <fgets@plt>	   ; protected against buffer overflow
+   0x080484c7 <+35>:	   call   0x80483a0 <fgets@plt>		; protected against buffer overflow
    0x080484cc <+40>:	   lea    -0x208(%ebp),%eax	; the value at ebp-520 is loaded into eax
    0x080484d2 <+46>:	   mov    %eax,(%esp)		; eax is saved in esp, which will be the parameter for printf
    0x080484d5 <+49>:	   call   0x8048390 <printf@plt>	; prints what we entered at fgets
