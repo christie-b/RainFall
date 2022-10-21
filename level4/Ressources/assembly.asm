@@ -3,7 +3,7 @@ Dump of assembler code for function main:
    0x080484a7 <+0>:	push   %ebp
    0x080484a8 <+1>:	mov    %esp,%ebp
    0x080484aa <+3>:	and    $0xfffffff0,%esp
-   0x080484ad <+6>:	call   0x8048457 <n>			; call function n
+   0x080484ad <+6>:	call   0x8048457 <n>		; call function n
    0x080484b2 <+11>:	leave  
    0x080484b3 <+12>:	ret    
 End of assembler dump.
