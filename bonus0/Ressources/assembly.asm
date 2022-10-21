@@ -67,26 +67,26 @@ End of assembler dump.
 Dump of assembler code for function p:
    0x080484b4 <+0>:		push   %ebp
    0x080484b5 <+1>:		mov    %esp,%ebp
-   0x080484b7 <+3>:		sub    $0x1018,%esp						; 4120 bytes are allocated for its variable
-   0x080484bd <+9>:		mov    0xc(%ebp),%eax					; move ebp+12 to eax (0x80486a0: " - ")
->   0x080484c0 <+12>:	mov    %eax,(%esp)						; move ebp+12 to esp
+   0x080484b7 <+3>:		sub    $0x1018,%esp				; 4120 bytes are allocated for its variable
+   0x080484bd <+9>:		mov    0xc(%ebp),%eax				; move ebp+12 to eax (0x80486a0: " - ")
+>   0x080484c0 <+12>:	mov    %eax,(%esp)					; move ebp+12 to esp
    0x080484c3 <+15>:	call   0x80483b0 <puts@plt>				; puts(ebp+12)
    0x080484c8 <+20>:	movl   $0x1000,0x8(%esp)				; move 4096 to esp+8
    0x080484d0 <+28>:	lea    -0x1008(%ebp),%eax				; move pointer in ebp-4104 to eax, 0xbfffe670? new buffer?-> after, "hello" is stored there
 >   0x080484d6 <+34>:	mov    %eax,0x4(%esp)					; move ebp-4104 to esp+4, 0xbfffe670?
-   0x080484da <+38>:	movl   $0x0,(%esp)						; move 0 to esp
+   0x080484da <+38>:	movl   $0x0,(%esp)					; move 0 to esp
    0x080484e1 <+45>:	call   0x8048380 <read@plt>				; read(0, ebp-4104, 4096)
    0x080484e6 <+50>:	movl   $0xa,0x4(%esp)					; move 10 to esp+4
    0x080484ee <+58>:	lea    -0x1008(%ebp),%eax				; move pointer in ebp-4104 to eax
-   0x080484f4 <+64>:	mov    %eax,(%esp)						; move ebp-4104 to esp
-   0x080484f7 <+67>:	call   0x80483d0 <strchr@plt>			; strchr(ebp-4104, 10)
-   0x080484fc <+72>:	movb   $0x0,(%eax)						; set eax = return value of strchr to 0
+   0x080484f4 <+64>:	mov    %eax,(%esp)					; move ebp-4104 to esp
+   0x080484f7 <+67>:	call   0x80483d0 <strchr@plt>				; strchr(ebp-4104, 10)
+   0x080484fc <+72>:	movb   $0x0,(%eax)					; set eax = return value of strchr to 0
    0x080484ff <+75>:	lea    -0x1008(%ebp),%eax				; move pointer in ebp-4104 to eax
    0x08048505 <+81>:	movl   $0x14,0x8(%esp)					; move 20 to esp+8
 >   0x0804850d <+89>:	mov    %eax,0x4(%esp)					; move ebp-4104 to esp+4, 0xbfffe670: "hello", and "you" after second read
    0x08048511 <+93>:	mov    0x8(%ebp),%eax					; move ebp+8 to eax
->   0x08048514 <+96>:	mov    %eax,(%esp)						; move ebp+8 to esp, 0xbffff6a8 = buf1, after 2nd read: 0xbffff6bc = buf2
-   0x08048517 <+99>:	call   0x80483f0 <strncpy@plt>			; strncpy(ebp+8, ebp-4104, 20)
+>   0x08048514 <+96>:	mov    %eax,(%esp)					; move ebp+8 to esp, 0xbffff6a8 = buf1, after 2nd read: 0xbffff6bc = buf2
+   0x08048517 <+99>:	call   0x80483f0 <strncpy@plt>				; strncpy(ebp+8, ebp-4104, 20)
    0x0804851c <+104>:	leave  
    0x0804851d <+105>:	ret    
 End of assembler dump.
