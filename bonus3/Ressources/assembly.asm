@@ -1,11 +1,11 @@
 (gdb) disas main
 Dump of assembler code for function main:
-   0x080484f4 <+0>:		push   %ebp
-   0x080484f5 <+1>:		mov    %esp,%ebp
-   0x080484f7 <+3>:		push   %edi
-   0x080484f8 <+4>:		push   %ebx
-   0x080484f9 <+5>:		and    $0xfffffff0,%esp
-   0x080484fc <+8>:		sub    $0xa0,%esp		; allocate 160bytes to the variables
+   0x080484f4 <+0>:	push   %ebp
+   0x080484f5 <+1>:	mov    %esp,%ebp
+   0x080484f7 <+3>:	push   %edi
+   0x080484f8 <+4>:	push   %ebx
+   0x080484f9 <+5>:	and    $0xfffffff0,%esp
+   0x080484fc <+8>:	sub    $0xa0,%esp			; allocate 160bytes to the variables
    0x08048502 <+14>:	mov    $0x80486f0,%edx			; edx = "r"
    0x08048507 <+19>:	mov    $0x80486f2,%eax			; eax = "/home/user/end/.pass"
    0x0804850c <+24>:	mov    %edx,0x4(%esp)			; esp+4 = "r"
