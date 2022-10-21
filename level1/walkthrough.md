@@ -86,7 +86,7 @@ cat /home/user/level2/.pass
 
 
 
-/*
+
 Stack based buffer overflows are one of the most common vulnerabilities. Found today. It affects any
 function that copies input to memory without doing bounds checking. For example:
 Strcpy(),memcpy(),gets(),etc…..
@@ -108,5 +108,3 @@ thus the "data" you use is always written from low to high
   -----------> 0A (a+3)
   Little endian
 ```
-
-*/
