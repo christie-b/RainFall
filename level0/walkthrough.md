@@ -22,7 +22,7 @@ No !
 -> gdb level0
 -> disas main
 0x08048ed4 <+20>:	call   0x8049710 <atoi>
-0x08048ed9 <+25>:	cmp    $0x1a7,%eax   // Compares eax to 423
+0x08048ed9 <+25>:	cmp    $0x1a7,%eax				// Compares eax to 423
 0x08048ede <+30>:	jne    0x8048f58 <main+152>
 0x08048ee0 <+32>:	movl   $0x80c5348,(%esp)
 0x08048ee7 <+39>:	call   0x8050bf0 <strdup>
