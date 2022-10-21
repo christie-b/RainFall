@@ -57,7 +57,7 @@ buf1 = 0xbffff6a8
 buf2 = 0xbffff6bc  
 
 
-### Execution
+### Steps
 
 ```
 (gdb) run
