@@ -44,7 +44,7 @@ You can view the asm code translated to C [here](source.c)
 -> We know there is a function o() that launches a shell, but it is not called.  
 
 The program takes an input through fgets, which is protected from buffer overflows.  
-It then prints the buffer and exit.  
+It then prints the buffer and exits.  
 The exit function comes from the plt (*exit@plt*).  
 
 The procedure linkage table (PLT) consists of many jump instructions, each one corresponding to
