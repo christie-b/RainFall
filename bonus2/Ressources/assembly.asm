@@ -109,25 +109,25 @@ Dump of assembler code for function greetuser:
    0x080484e0 <+92>:	movzbl 0x12(%edx),%edx           	; move edx+18 to edx
    0x080484e4 <+96>:	mov    %dl,0x12(%eax)            	; move %dl to eax+18 (dl= least significant byte of edx)
    0x080484e7 <+99>:	jmp    0x804850a <greetuser+134> 	;
-   0x080484e9 <+101>:	mov    $0x804872a,%edx        	; edx = hello in dutch = "Goedemiddag! "
-   0x080484ee <+106>:	lea    -0x48(%ebp),%eax       	;
-   0x080484f1 <+109>:	mov    (%edx),%ecx            	; move "Goedemiddag! " to ecx
-   0x080484f3 <+111>:	mov    %ecx,(%eax)            	; move "Goedemiddag! " to eax
-   0x080484f5 <+113>:	mov    0x4(%edx),%ecx         	; move edx+4 to ecx
-   0x080484f8 <+116>:	mov    %ecx,0x4(%eax)         	; move edx+4 to eax+4
-   0x080484fb <+119>:	mov    0x8(%edx),%ecx         	; move edx+8 to ecx
-   0x080484fe <+122>:	mov    %ecx,0x8(%eax)         	; move edx+8 to eax+8
-   0x08048501 <+125>:	movzwl 0xc(%edx),%edx         	; move edx+12 to edx
-   0x08048505 <+129>:	mov    %dx,0xc(%eax)          	; move dx to eax+12 (dx = data register)
-   0x08048509 <+133>:	nop                           	;
-   0x0804850a <+134>:	lea    0x8(%ebp),%eax         	; eax = ebp + 8 (argv[1]?)
-   0x0804850d <+137>:	mov    %eax,0x4(%esp)         	; esp + 4 = eax
-   0x08048511 <+141>:	lea    -0x48(%ebp),%eax       	; eax = ebp - 72 (apparently esp + 24?)
-   0x08048514 <+144>:	mov    %eax,(%esp)            	; esp = eax
-   0x08048517 <+147>:	call   0x8048370 <strcat@plt> 	; strcat(esp + 16, ebp + 8)
-   0x0804851c <+152>:	lea    -0x48(%ebp),%eax       	;
-   0x0804851f <+155>:	mov    %eax,(%esp)            	;
-   0x08048522 <+158>:	call   0x8048390 <puts@plt>   	;
+   0x080484e9 <+101>:	mov    $0x804872a,%edx        		; edx = hello in dutch = "Goedemiddag! "
+   0x080484ee <+106>:	lea    -0x48(%ebp),%eax       		;
+   0x080484f1 <+109>:	mov    (%edx),%ecx            		; move "Goedemiddag! " to ecx
+   0x080484f3 <+111>:	mov    %ecx,(%eax)            		; move "Goedemiddag! " to eax
+   0x080484f5 <+113>:	mov    0x4(%edx),%ecx         		; move edx+4 to ecx
+   0x080484f8 <+116>:	mov    %ecx,0x4(%eax)         		; move edx+4 to eax+4
+   0x080484fb <+119>:	mov    0x8(%edx),%ecx         		; move edx+8 to ecx
+   0x080484fe <+122>:	mov    %ecx,0x8(%eax)         		; move edx+8 to eax+8
+   0x08048501 <+125>:	movzwl 0xc(%edx),%edx         		; move edx+12 to edx
+   0x08048505 <+129>:	mov    %dx,0xc(%eax)          		; move dx to eax+12 (dx = data register)
+   0x08048509 <+133>:	nop                           		;
+   0x0804850a <+134>:	lea    0x8(%ebp),%eax         		; eax = ebp + 8 (argv[1]?)
+   0x0804850d <+137>:	mov    %eax,0x4(%esp)         		; esp + 4 = eax
+   0x08048511 <+141>:	lea    -0x48(%ebp),%eax       		; eax = ebp - 72 (apparently esp + 24?)
+   0x08048514 <+144>:	mov    %eax,(%esp)            		; esp = eax
+   0x08048517 <+147>:	call   0x8048370 <strcat@plt> 		; strcat(esp + 16, ebp + 8)
+   0x0804851c <+152>:	lea    -0x48(%ebp),%eax       		;
+   0x0804851f <+155>:	mov    %eax,(%esp)            		;
+   0x08048522 <+158>:	call   0x8048390 <puts@plt>   		;
    0x08048527 <+163>:	leave          
    0x08048528 <+164>:	ret    
 End of assembler dump.
