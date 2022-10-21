@@ -68,6 +68,7 @@ We want to write at address 0x804988c, if we do :
 
 > -> we therefore need to print 64 characters before the %n to store 64 at 0x804988c,  
 in order to pass the cmp and launch the shell.  
+
 `
 The beginning of the format string should consist of the target memory address, 60 bytes of junk,
 and then 4th parameter printed as %n (=64, target address (4bytes) + 60 * A + %4$n).
