@@ -1,10 +1,10 @@
 (gdb) disas main
 Dump of assembler code for function main:
-   0x080485a4 <+0>:		push   %ebp
-   0x080485a5 <+1>:		mov    %esp,%ebp
-   0x080485a7 <+3>:		and    $0xfffffff0,%esp
-   0x080485aa <+6>:		sub    $0x40,%esp
-   0x080485ad <+9>:		lea    0x16(%esp),%eax					; move pointer in esp+22 in eax
+   0x080485a4 <+0>:	push   %ebp
+   0x080485a5 <+1>:	mov    %esp,%ebp
+   0x080485a7 <+3>:	and    $0xfffffff0,%esp
+   0x080485aa <+6>:	sub    $0x40,%esp
+   0x080485ad <+9>:	lea    0x16(%esp),%eax					; move pointer in esp+22 in eax
    0x080485b1 <+13>:	mov    %eax,(%esp)						; move pointer in esp+22 to esp
    0x080485b4 <+16>:	call   0x804851e <pp>					; call pp with pointer on esp+22 as argument || esp+22 = 0xbffff6f6 = buf
    0x080485b9 <+21>:	lea    0x16(%esp),%eax					; move pointer in esp+22 in eax
@@ -18,12 +18,12 @@ End of assembler dump.
 
 (gdb) disas pp
 Dump of assembler code for function pp:
-   0x0804851e <+0>:		push   %ebp
-   0x0804851f <+1>:		mov    %esp,%ebp
-   0x08048521 <+3>:		push   %edi
-   0x08048522 <+4>:		push   %ebx
-   0x08048523 <+5>:		sub    $0x50,%esp						; allocate 80 bytes for the local variables
-   0x08048526 <+8>:		movl   $0x80486a0,0x4(%esp)				; (gdb) x/s 0x80486a0: " - ", moved to esp+4
+   0x0804851e <+0>:	push   %ebp
+   0x0804851f <+1>:	mov    %esp,%ebp
+   0x08048521 <+3>:	push   %edi
+   0x08048522 <+4>:	push   %ebx
+   0x08048523 <+5>:	sub    $0x50,%esp						; allocate 80 bytes for the local variables
+   0x08048526 <+8>:	movl   $0x80486a0,0x4(%esp)				; (gdb) x/s 0x80486a0: " - ", moved to esp+4
    0x0804852e <+16>:	lea    -0x30(%ebp),%eax					; move pointer in ebp-48 to eax || ebp-48 = buf1
 >   0x08048531 <+19>:	mov    %eax,(%esp)						; move ebp-48 to esp, buf1 is at 0xbffff6a8
    0x08048534 <+22>:	call   0x80484b4 <p>					; call to p(ebp-48, " - ")
