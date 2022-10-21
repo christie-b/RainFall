@@ -33,18 +33,18 @@ Dump of assembler code for function main:
    0x08048590 <+103>:	lea    0x50(%esp),%eax					; move pointer in esp+80 to eax (buffer)
    0x08048594 <+107>:	add    $0x28,%eax					; add 40 to eax | esp+120 | buffer[40]
    0x08048597 <+110>:	mov    %eax,(%esp)					; move esp+120 to esp
-   0x0804859a <+113>:	call   0x80483c0 <strncpy@plt>			; strncpy(buffer[40], argv[2], 32)
-   0x0804859f <+118>:	movl   $0x8048738,(%esp)				; x/s: "LANG"
-   0x080485a6 <+125>:	call   0x8048380 <getenv@plt>				; getenv("LANG")
-   0x080485ab <+130>:	mov    %eax,0x9c(%esp)					; store return value of getenv (pointer to the value in env) in esp+156, stored in a char*
-   0x080485b2 <+137>:	cmpl   $0x0,0x9c(%esp)					; compare 0 esp+156
-   0x080485ba <+145>:	je     0x8048618 <main+239>				; if equal to 0, jump to 239
-   0x080485bc <+147>:	movl   $0x2,0x8(%esp)					; set esp+8 to 2
-   0x080485c4 <+155>:	movl   $0x804873d,0x4(%esp)				; x/s: "fi" to esp+4
-   0x080485cc <+163>:	mov    0x9c(%esp),%eax					; move esp+156 to eax
-   0x080485d3 <+170>:	mov    %eax,(%esp)					; move esp+156 to esp, return value of getenv
-   0x080485d6 <+173>:	call   0x8048360 <memcmp@plt>				; memcmp(*(esp+156), "fi", 2)
-   0x080485db <+178>:	test   %eax,%eax					; compare return of memcmp
+   0x0804859a <+113>:	call   0x80483c0 <strncpy@plt>	; strncpy(buffer[40], argv[2], 32)
+   0x0804859f <+118>:	movl   $0x8048738,(%esp)		; x/s: "LANG"
+   0x080485a6 <+125>:	call   0x8048380 <getenv@plt>		; getenv("LANG")
+   0x080485ab <+130>:	mov    %eax,0x9c(%esp)			; store return value of getenv (pointer to the value in env) in esp+156, stored in a char*
+   0x080485b2 <+137>:	cmpl   $0x0,0x9c(%esp)			; compare 0 esp+156
+   0x080485ba <+145>:	je     0x8048618 <main+239>		; if equal to 0, jump to 239
+   0x080485bc <+147>:	movl   $0x2,0x8(%esp)			; set esp+8 to 2
+   0x080485c4 <+155>:	movl   $0x804873d,0x4(%esp)		; x/s: "fi" to esp+4
+   0x080485cc <+163>:	mov    0x9c(%esp),%eax			; move esp+156 to eax
+   0x080485d3 <+170>:	mov    %eax,(%esp)			; move esp+156 to esp, return value of getenv
+   0x080485d6 <+173>:	call   0x8048360 <memcmp@plt>		; memcmp(*(esp+156), "fi", 2)
+   0x080485db <+178>:	test   %eax,%eax			; compare return of memcmp
    0x080485dd <+180>:	jne    0x80485eb <main+194>         	; jump to main+194 if return is not zero
    0x080485df <+182>:	movl   $0x1,0x8049988               	; variable "language" set to 1
    0x080485e9 <+192>:	jmp    0x8048618 <main+239>         	; jump to 239
