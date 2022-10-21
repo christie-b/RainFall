@@ -51,6 +51,7 @@ You can view the asm code translated to C [here](source.c)
 
 ### Steps
 
+```
 (gdb) run
 Starting program: /home/user/level8/level8 
 (nil), (nil) 
@@ -105,7 +106,7 @@ Non-debugging symbols:
 Continuing.
 $ pwd
 /home/user/level8
-
+```
 
 - Final Command
 
