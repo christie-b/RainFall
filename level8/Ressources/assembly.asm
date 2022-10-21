@@ -42,7 +42,7 @@ Dump of assembler code for function main:
    0x080485e0 <+124>:	test   %eax,%eax
    0x080485e2 <+126>:	jne    0x8048642 <main+222>		; if not equal to 0, jump to 222
    {
-   0x080485e4 <+128>:	movl   $0x4,(%esp)            ; move 4 to esp
+   0x080485e4 <+128>:	movl   $0x4,(%esp)               ; move 4 to esp
    0x080485eb <+135>:	call   0x8048470 <malloc@plt>		; malloc(4)
    0x080485f0 <+140>:	mov    %eax,0x8049aac			; store return value to auth variable
    0x080485f5 <+145>:	mov    0x8049aac,%eax			; store auth variable to eax
@@ -54,7 +54,7 @@ Dump of assembler code for function main:
    0x08048611 <+173>:	mov    $0x0,%eax			; set eax to 0
    0x08048616 <+178>:	mov    0x1c(%esp),%ecx			; move esp+32 to ecx
    0x0804861a <+182>:	mov    %edx,%edi			; move eax+5 to edi
-   0x0804861c <+184>:	repnz scas %es:(%edi),%al        ; repeat while not equal, scan string, decreases ecx at every iteration
+   0x0804861c <+184>:	repnz scas %es:(%edi),%al           ; repeat while not equal, scan string, decreases ecx at every iteration
    0x0804861e <+186>:	mov    %ecx,%eax			; move ecx to eax
    0x08048620 <+188>:	not    %eax				; inverts each bit
    0x08048622 <+190>:	sub    $0x1,%eax			; eax - 1
