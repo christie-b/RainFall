@@ -13,7 +13,7 @@ Dump of assembler code for function main:
    0x08048581 <+29>:	mov    $0x8048810,%eax			; "%p, %p \n"
    0x08048586 <+34>:	mov    %ecx,0x8(%esp)			; move service var to esp+8
    0x0804858a <+38>:	mov    %edx,0x4(%esp)			; move auth var to esp+4
-   0x0804858e <+42>:	mov    %eax,(%esp)				; move "%p, %p \n" to esp
+   0x0804858e <+42>:	mov    %eax,(%esp)			; move "%p, %p \n" to esp
    0x08048591 <+45>:	call   0x8048410 <printf@plt>		; printf("%p, %p \n", auth, service)
    0x08048596 <+50>:	mov    0x8049a80,%eax			; stdin
    0x0804859b <+55>:	mov    %eax,0x8(%esp)			; move stdin to esp+8
@@ -21,7 +21,7 @@ Dump of assembler code for function main:
    0x080485a7 <+67>:	lea    0x20(%esp),%eax			; move esp+32 to eax
    0x080485ab <+71>:	mov    %eax,(%esp)			; move eax to esp
    0x080485ae <+74>:	call   0x8048440 <fgets@plt>		; fgets(esp+32, 128, stdin)
-   0x080485b3 <+79>:	test   %eax,%eax						; test return value of fgets, if it is 0, set ZF(Zero Flag) to 1
+   0x080485b3 <+79>:	test   %eax,%eax			; test return value of fgets, if it is 0, set ZF(Zero Flag) to 1
    ;TEST sets the zero flag, ZF, when the result of the AND operation is zero. If two operands are equal, their bitwise AND is zero when both are zero. TEST also sets the sign flag, SF, when the most significant bit is set in the result, and the parity flag, PF, when the number of set bits is even.
    ; JE [Jump if Equals] tests the zero flag and jumps if the flag is set. JE is an alias of JZ [Jump if Zero] 
    0x080485b5 <+81>:	je     0x804872c <main+456>		; if it is ZF=0, jump to 456 // if no input, quits program
@@ -42,7 +42,7 @@ Dump of assembler code for function main:
    0x080485e0 <+124>:	test   %eax,%eax
    0x080485e2 <+126>:	jne    0x8048642 <main+222>		; if not equal to 0, jump to 222
    {
-   0x080485e4 <+128>:	movl   $0x4,(%esp)		; move 4 to esp
+   0x080485e4 <+128>:	movl   $0x4,(%esp)		   ; move 4 to esp
    0x080485eb <+135>:	call   0x8048470 <malloc@plt>		; malloc(4)
    0x080485f0 <+140>:	mov    %eax,0x8049aac			; store return value to auth variable
    0x080485f5 <+145>:	mov    0x8049aac,%eax			; store auth variable to eax
@@ -54,11 +54,11 @@ Dump of assembler code for function main:
    0x08048611 <+173>:	mov    $0x0,%eax			; set eax to 0
    0x08048616 <+178>:	mov    0x1c(%esp),%ecx			; move esp+32 to ecx
    0x0804861a <+182>:	mov    %edx,%edi			; move eax+5 to edi
-   0x0804861c <+184>:	repnz scas %es:(%edi),%al	; repeat while not equal, scan string, decreases ecx at every iteration
-   0x0804861e <+186>:	mov    %ecx,%eax				; move ecx to eax
-   0x08048620 <+188>:	not    %eax					; inverts each bit
+   0x0804861c <+184>:	repnz scas %es:(%edi),%al     ; repeat while not equal, scan string, decreases ecx at every iteration
+   0x0804861e <+186>:	mov    %ecx,%eax			; move ecx to eax
+   0x08048620 <+188>:	not    %eax				; inverts each bit
    0x08048622 <+190>:	sub    $0x1,%eax			; eax - 1
-   0x08048625 <+193>:	cmp    $0x1e,%eax				; compares eax - 1 to 30
+   0x08048625 <+193>:	cmp    $0x1e,%eax			; compares eax - 1 to 30
    0x08048628 <+196>:	ja     0x8048642 <main+222>		; jump if above (eax > 30) to 222
    {
    0x0804862a <+198>:	lea    0x20(%esp),%eax			; move pointer in esp+32 to eax
