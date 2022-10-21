@@ -49,6 +49,7 @@ info function
 ```
 
 You can view the commented asm code [here](Ressources/assembly.asm)  
+You can view the asm code translated to C [here](source.c)  
 
 Buffer addresses:  
 buf = 0xbffff6f6  
