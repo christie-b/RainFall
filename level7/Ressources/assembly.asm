@@ -26,7 +26,7 @@ Dump of assembler code for function main:
    0x08048585 <+100>:	mov    %edx,0x4(%eax)		; put the address of the 4th malloc (at edx), to the 3rd malloc (eax) + 4 bytes - ie the 2nd case - ptr2[1] = malloc(8)
    ///////////////////
    0x08048588 <+103>:	mov    0xc(%ebp),%eax		; set eax to ebp + 12 ?  ebp + 12 = argv[0]?
-   0x0804858b <+106>:	add    $0x4,%eax				; Add 4 to eax (argv[1] ?)
+   0x0804858b <+106>:	add    $0x4,%eax		; Add 4 to eax (argv[1] ?)
    0x0804858e <+109>:	mov    (%eax),%eax
    0x08048590 <+111>:	mov    %eax,%edx		; store eax (argv[1]) at edx
    0x08048592 <+113>:	mov    0x1c(%esp),%eax		; set the area of the 1st malloc (esp + 0x1c) to eax
@@ -42,7 +42,7 @@ Dump of assembler code for function main:
    0x080485af <+142>:	mov    0x18(%esp),%eax		; set eax at the address of the 3rd malloc (esp + 0x18)
    0x080485b3 <+146>:	mov    0x4(%eax),%eax		; move to 4 bytes after the address of the 3rd malloc, i.e the 2nd case of the area - ptr2[1]
    0x080485b6 <+149>:	mov    %edx,0x4(%esp)		; store edx (= argv[2]) at esp + 4
-   0x080485ba <+153>:	mov    %eax,(%esp)			; store eax (2nd case of 3rd malloc'ed area - ptr2[1]) at esp
+   0x080485ba <+153>:	mov    %eax,(%esp)		; store eax (2nd case of 3rd malloc'ed area - ptr2[1]) at esp
    0x080485bd <+156>:	call   0x80483e0 <strcpy@plt>	; strcpy(esp, esp + 4 - strcpy(ptr2[1], argv[2])
    0x080485c2 <+161>:	mov    $0x80486e9,%edx		; "r"
    0x080485c7 <+166>:	mov    $0x80486eb,%eax		; "/home/user/level8/.pass"
