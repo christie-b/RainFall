@@ -7,33 +7,33 @@ Dump of assembler code for function main:
    0x0804852e <+5>:	push   %ebx
    0x0804852f <+6>:	and    $0xfffffff0,%esp
    0x08048532 <+9>:	sub    $0xa0,%esp			; allocate 160 bytes for variables
-   0x08048538 <+15>:	   cmpl   $0x3,0x8(%ebp)			; compares 3 to ebp+8 (argc?)
-   0x0804853c <+19>:	   je     0x8048548 <main+31>				; if equal to 3, jump to 31
-   0x0804853e <+21>:	   mov    $0x1,%eax				; set eax to 1
-   0x08048543 <+26>:	   jmp    0x8048630 <main+263>				; jump to 263
-   0x08048548 <+31>:	   lea    0x50(%esp),%ebx				; move pointer in esp+80 to ebx (buffer ?)
-   0x0804854c <+35>:	   mov    $0x0,%eax					; set eax to 0
-   0x08048551 <+40>:	   mov    $0x13,%edx					; set edx to 19
-   0x08048556 <+45>:	   mov    %ebx,%edi					; move esp+80 to edi
-   0x08048558 <+47>:	   mov    %edx,%ecx					; move 19 to ecx
-   0x0804855a <+49>:	   rep stos %eax,%es:(%edi)				; for ecx repetitions (19) stores the contents of eax (0) into where edi points to, incrementing or decrementing edi (depending on the direction flag) by 4 bytes each time   ----> that means memset(0xbffff690,76)
-   0x0804855c <+51>:	   mov    0xc(%ebp),%eax				; move ebp+12(**argv) to eax
-   0x0804855f <+54>:	   add    $0x4,%eax							; eax = eax+4 = ebp+16 (argv[1]?)
-   0x08048562 <+57>:	   mov    (%eax),%eax          ; eax = *eax
-   0x08048564 <+59>:	   movl   $0x28,0x8(%esp)				; move 40 to esp+8 (size)
-   0x0804856c <+67>:	   mov    %eax,0x4(%esp)				; move ebp+16 (argv[1]) to esp+4 (src)
-   0x08048570 <+71>:	   lea    0x50(%esp),%eax				; move pointer in esp+80 to eax
-   0x08048574 <+75>:	   mov    %eax,(%esp)					; move eax (esp+80) to esp (dest)
-   0x08048577 <+78>:	   call   0x80483c0 <strncpy@plt>			; strncpy(buffer, argv[1], 40)
-   0x0804857c <+83>:	   mov    0xc(%ebp),%eax				; move ebp+12 to eax
-   0x0804857f <+86>:	   add    $0x8,%eax					; eax = eax+8 = ebp+20 (argv[2]?)
-   0x08048582 <+89>:	   mov    (%eax),%eax						; dereference eax
-   0x08048584 <+91>:	   movl   $0x20,0x8(%esp)				; move 32 to esp+8
-   0x0804858c <+99>:	   mov    %eax,0x4(%esp)				; move eax (argv[2]) to esp+4
-   0x08048590 <+103>:	lea    0x50(%esp),%eax					; move pointer in esp+80 to eax (buffer)
-   0x08048594 <+107>:	add    $0x28,%eax					; add 40 to eax | esp+120 | buffer[40]
-   0x08048597 <+110>:	mov    %eax,(%esp)					; move esp+120 to esp
-   0x0804859a <+113>:	call   0x80483c0 <strncpy@plt>	; strncpy(buffer[40], argv[2], 32)
+   0x08048538 <+15>:	   cmpl   $0x3,0x8(%ebp)		; compares 3 to ebp+8 (argc?)
+   0x0804853c <+19>:	   je     0x8048548 <main+31>	; if equal to 3, jump to 31
+   0x0804853e <+21>:	   mov    $0x1,%eax			; set eax to 1
+   0x08048543 <+26>:	   jmp    0x8048630 <main+263>		; jump to 263
+   0x08048548 <+31>:	   lea    0x50(%esp),%ebx		; move pointer in esp+80 to ebx (buffer ?)
+   0x0804854c <+35>:	   mov    $0x0,%eax			; set eax to 0
+   0x08048551 <+40>:	   mov    $0x13,%edx			; set edx to 19
+   0x08048556 <+45>:	   mov    %ebx,%edi			; move esp+80 to edi
+   0x08048558 <+47>:	   mov    %edx,%ecx			; move 19 to ecx
+   0x0804855a <+49>:	   rep stos %eax,%es:(%edi)		; for ecx repetitions (19) stores the contents of eax (0) into where edi points to, incrementing or decrementing edi (depending on the direction flag) by 4 bytes each time   ----> that means memset(0xbffff690,76)
+   0x0804855c <+51>:	   mov    0xc(%ebp),%eax		; move ebp+12(**argv) to eax
+   0x0804855f <+54>:	   add    $0x4,%eax					; eax = eax+4 = ebp+16 (argv[1]?)
+   0x08048562 <+57>:	   mov    (%eax),%eax          	; eax = *eax
+   0x08048564 <+59>:	   movl   $0x28,0x8(%esp)		; move 40 to esp+8 (size)
+   0x0804856c <+67>:	   mov    %eax,0x4(%esp)		; move ebp+16 (argv[1]) to esp+4 (src)
+   0x08048570 <+71>:	   lea    0x50(%esp),%eax		; move pointer in esp+80 to eax
+   0x08048574 <+75>:	   mov    %eax,(%esp)			; move eax (esp+80) to esp (dest)
+   0x08048577 <+78>:	   call   0x80483c0 <strncpy@plt>	; strncpy(buffer, argv[1], 40)
+   0x0804857c <+83>:	   mov    0xc(%ebp),%eax		; move ebp+12 to eax
+   0x0804857f <+86>:	   add    $0x8,%eax			; eax = eax+8 = ebp+20 (argv[2]?)
+   0x08048582 <+89>:	   mov    (%eax),%eax			; dereference eax
+   0x08048584 <+91>:	   movl   $0x20,0x8(%esp)		; move 32 to esp+8
+   0x0804858c <+99>:	   mov    %eax,0x4(%esp)		; move eax (argv[2]) to esp+4
+   0x08048590 <+103>:	lea    0x50(%esp),%eax			; move pointer in esp+80 to eax (buffer)
+   0x08048594 <+107>:	add    $0x28,%eax			; add 40 to eax | esp+120 | buffer[40]
+   0x08048597 <+110>:	mov    %eax,(%esp)			; move esp+120 to esp
+   0x0804859a <+113>:	call   0x80483c0 <strncpy@plt>		; strncpy(buffer[40], argv[2], 32)
    0x0804859f <+118>:	movl   $0x8048738,(%esp)		; x/s: "LANG"
    0x080485a6 <+125>:	call   0x8048380 <getenv@plt>		; getenv("LANG")
    0x080485ab <+130>:	mov    %eax,0x9c(%esp)			; store return value of getenv (pointer to the value in env) in esp+156, stored in a char*
