@@ -34,6 +34,10 @@ info function
 0x0804851a  main
 ```
 
+You can view the commented asm code [here](Ressources/assembly.asm)  
+You can view the asm code translated to C [here](source.c)  
+
+
 ### Steps
 
 The variable m, located at 0x804988c has to be = to 64 in order to launch the syscall to /bin/sh.  
