@@ -41,10 +41,14 @@ You can view the asm code translated to C [here](source.c)
 
 ### Steps
 
--> We know there is a function o() that launches a shell through *system@plt*, but it is not called.  
+-> We know there is a function o() that launches a shell, but it is not called.  
+
+The program takes an input through fgets, which is protected from buffer overflows.  
+It then prints the buffer and exit.  
+The exit function comes from the plt (*exit@plt*).  
 
 The procedure linkage table (PLT) consists of many jump instructions, each one corresponding to
-the address of a function. It works like a springboard—each time a shared function needs to be called, control will pass through the PLT.
+the address of a function.  
 
 ```
 level5@RainFall:~$ objdump -d -j .plt ./level5 
@@ -62,6 +66,7 @@ If the jump instruction used for the exit() function can be manipulated to direc
 But the plt table is *read-only*.  
 The jump instruction reveals that it isn't jumping to an address but to a pointer to address.  
 For example, the actual address of the exit() function’s address is stored at 0x8049838.  
+
 These addresses exist in another section, called the **global offset table** (GOT), which is writable.
 
 ```
