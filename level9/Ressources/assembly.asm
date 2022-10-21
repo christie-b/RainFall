@@ -46,7 +46,7 @@ Dump of assembler code for function main:
    0x08048699 <+165>:	ret    
 
 Dump of assembler code for function _Znwj@plt:
-   0x08048530 <+0>:	jmp    DWORD PTR ds:0x8049b70                 ; jump to function _Znwj@got.plt
+   0x08048530 <+0>:	jmp    DWORD PTR ds:0x8049b70             ; jump to function _Znwj@got.plt
    0x08048536 <+6>:	push   0x40
    0x0804853b <+11>:	jmp    0x80484a0
 
