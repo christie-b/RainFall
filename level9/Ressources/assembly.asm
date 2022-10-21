@@ -23,30 +23,30 @@ Dump of assembler code for function main:
    0x0804864b <+87>:	   call   0x80486f6 <_ZN1NC2Ei>           ; _ZN1NC2Ei(ebx, 6) / N::N(int) -> new N(6)
    0x08048650 <+92>:	   mov    DWORD PTR [esp+0x18],ebx        ; move ebx to esp + 24 <<< move 0x804a078 to esp + 24
    0x08048654 <+96>:	   mov    eax,DWORD PTR [esp+0x1c]        ; move esp + 28 to eax
-   0x08048658 <+100>:	mov    DWORD PTR [esp+0x14],eax        ; move eax to esp + 20 
-   0x0804865c <+104>:	mov    eax,DWORD PTR [esp+0x18]        ; move esp + 24 to eax 
-   0x08048660 <+108>:	mov    DWORD PTR [esp+0x10],eax        ; move eax to esp + 16 : move 0x804a078 to esp + 16
-   0x08048664 <+112>:	mov    eax,DWORD PTR [ebp+0xc]         ; move esp + 12 to eax
-   0x08048667 <+115>:	add    eax,0x4                         ; eax += 4
-   0x0804866a <+118>:	mov    eax,DWORD PTR [eax]             ; move the dereference of eax to eax
-   0x0804866c <+120>:	mov    DWORD PTR [esp+0x4],eax         ; move eax to esp + 04
-   0x08048670 <+124>:	mov    eax,DWORD PTR [esp+0x14]        ; move esp + 20 to eax
-   0x08048674 <+128>:	mov    DWORD PTR [esp],eax             ; move eax to esp
+   0x08048658 <+100>:	mov    DWORD PTR [esp+0x14],eax           ; move eax to esp + 20 
+   0x0804865c <+104>:	mov    eax,DWORD PTR [esp+0x18]           ; move esp + 24 to eax 
+   0x08048660 <+108>:	mov    DWORD PTR [esp+0x10],eax           ; move eax to esp + 16 : move 0x804a078 to esp + 16
+   0x08048664 <+112>:	mov    eax,DWORD PTR [ebp+0xc]            ; move esp + 12 to eax
+   0x08048667 <+115>:	add    eax,0x4                            ; eax += 4
+   0x0804866a <+118>:	mov    eax,DWORD PTR [eax]                ; move the dereference of eax to eax
+   0x0804866c <+120>:	mov    DWORD PTR [esp+0x4],eax            ; move eax to esp + 04
+   0x08048670 <+124>:	mov    eax,DWORD PTR [esp+0x14]           ; move esp + 20 to eax
+   0x08048674 <+128>:	mov    DWORD PTR [esp],eax                ; move eax to esp
    0x08048677 <+131>:	call   0x804870e <_ZN1N13setAnnotationEPc> _ZN1N13setAnnotationEPc(esp+20, esp + 16) / N::setAnnotation(char*)
-   0x0804867c <+136>:	mov    eax,DWORD PTR [esp+0x10]        ; move esp + 16 to eax; move 0x804a078 to eax
-   0x08048680 <+140>:	mov    eax,DWORD PTR [eax]             ; move value in [eax] to eax; dereference move 0x804a078  --- if we overflow, instead of 0x08048848, we have... 0x804a078
-   0x08048682 <+142>:	mov    edx,DWORD PTR [eax]             ; move value in eax to edx   ---> This is where we segfault
-   0x08048684 <+144>:	mov    eax,DWORD PTR [esp+0x14]        ; move esp + 20 to eax
-   0x08048688 <+148>:	mov    DWORD PTR [esp+0x4],eax         ; move eax to esp + 4
-   0x0804868c <+152>:	mov    eax,DWORD PTR [esp+0x10]        ; move esp + 16 to eax
-   0x08048690 <+156>:	mov    DWORD PTR [esp],eax             ; move eax to esp
-   0x08048693 <+159>:	call   edx                             ; call edx => edx is a function
-   0x08048695 <+161>:	mov    ebx,DWORD PTR [ebp-0x4]         ; move ebp - 4 to ebx
+   0x0804867c <+136>:	mov    eax,DWORD PTR [esp+0x10]           ; move esp + 16 to eax; move 0x804a078 to eax
+   0x08048680 <+140>:	mov    eax,DWORD PTR [eax]                ; move value in [eax] to eax; dereference move 0x804a078  --- if we overflow, instead of 0x08048848, we have... 0x804a078
+   0x08048682 <+142>:	mov    edx,DWORD PTR [eax]                ; move value in eax to edx   ---> This is where we segfault
+   0x08048684 <+144>:	mov    eax,DWORD PTR [esp+0x14]           ; move esp + 20 to eax
+   0x08048688 <+148>:	mov    DWORD PTR [esp+0x4],eax            ; move eax to esp + 4
+   0x0804868c <+152>:	mov    eax,DWORD PTR [esp+0x10]           ; move esp + 16 to eax
+   0x08048690 <+156>:	mov    DWORD PTR [esp],eax                ; move eax to esp
+   0x08048693 <+159>:	call   edx                                ; call edx => edx is a function
+   0x08048695 <+161>:	mov    ebx,DWORD PTR [ebp-0x4]            ; move ebp - 4 to ebx
    0x08048698 <+164>:	leave  
    0x08048699 <+165>:	ret    
 
 Dump of assembler code for function _Znwj@plt:
-   0x08048530 <+0>:	jmp    DWORD PTR ds:0x8049b70             ; jump to function _Znwj@got.plt
+   0x08048530 <+0>:	jmp    DWORD PTR ds:0x8049b70                 ; jump to function _Znwj@got.plt
    0x08048536 <+6>:	push   0x40
    0x0804853b <+11>:	jmp    0x80484a0
 
