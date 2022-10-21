@@ -2,9 +2,9 @@ Dump of assembler code for function main:
    0x08048424 <+0>:	push   %ebp
    0x08048425 <+1>:	mov    %esp,%ebp
    0x08048427 <+3>:	and    $0xfffffff0,%esp
-   0x0804842a <+6>:	sub    $0x40,%esp						; allocated 64bytes for variables
-   0x0804842d <+9>:	mov    0xc(%ebp),%eax				; move ebp+12 to eax (argv[0]?)
-   0x08048430 <+12>:	add    $0x4,%eax						; eax = eax+4 = ebp+16 (argv[1])
+   0x0804842a <+6>:	sub    $0x40,%esp					; allocated 64bytes for variables
+   0x0804842d <+9>:	mov    0xc(%ebp),%eax					; move ebp+12 to eax (argv[0]?)
+   0x08048430 <+12>:	add    $0x4,%eax					; eax = eax+4 = ebp+16 (argv[1])
    0x08048433 <+15>:	mov    (%eax),%eax
    0x08048435 <+17>:	mov    %eax,(%esp)					; move eax to esp (argv[1])
    0x08048438 <+20>:	call   0x8048360 <atoi@plt>				; atoi(esp)
