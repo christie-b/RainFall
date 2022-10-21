@@ -10,7 +10,7 @@ void o(void)
 
 void n(void)
 {
-	char buf[520];
+	int buf[128];
 
 	fgets(buf, 512, stdin);
 	printf(buf);
@@ -20,5 +20,4 @@ void n(void)
 int main(void)
 {
 	n();
-	return (0);
 }
