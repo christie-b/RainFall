@@ -5,21 +5,19 @@
 
 void p(char *buf, char *str)
 {
-	char buf3[4096];
-	char *ret;
+	int buf3[1024];
 
 	puts(str);
 	read(0, buf3, 4096);
-	ret = strchr(buf3, '\n'); // 10 is \n
-	*ret = 0;
+	*(strchr(buf3, '\n')) = 0; // 10 is \n
 	strncpy(buf, buf3, 20);
 
 }
 
 void	pp(char *buf)
 {
-	char buf1[20];
-	char buf2[20];
+	int buf1[5];
+	int buf2[5];
 
 	p(buf1, " - ");
 	p(buf2, " - ");
@@ -37,7 +35,7 @@ void	pp(char *buf)
 
 int main(int argc, char **argv)
 {
-	char buf[42]; // 0x40 - 0x16
+	short buf[21]; // 0x40 - 0x16
 
 	pp(buf);
 	puts(buf);
