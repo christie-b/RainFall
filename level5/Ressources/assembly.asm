@@ -16,15 +16,15 @@ Dump of assembler code for function n:
    0x080484c5 <+3>:	sub    $0x218,%esp		; 536
    0x080484cb <+9>:	mov    0x8049848,%eax		; stdin
    0x080484d0 <+14>:	mov    %eax,0x8(%esp)
-   0x080484d4 <+18>:	movl   $0x200,0x4(%esp)			; 512
-   0x080484dc <+26>:	lea    -0x208(%ebp),%eax		; 520
+   0x080484d4 <+18>:	movl   $0x200,0x4(%esp)		; 512
+   0x080484dc <+26>:	lea    -0x208(%ebp),%eax	; 520
    0x080484e2 <+32>:	mov    %eax,(%esp)
    0x080484e5 <+35>:	call   0x80483a0 <fgets@plt>
-   0x080484ea <+40>:	lea    -0x208(%ebp),%eax		; 520
+   0x080484ea <+40>:	lea    -0x208(%ebp),%eax	; 520
    0x080484f0 <+46>:	mov    %eax,(%esp)	
-   0x080484f3 <+49>:	call   0x8048380 <printf@plt>		; prints buffer
+   0x080484f3 <+49>:	call   0x8048380 <printf@plt>	; prints buffer
    0x080484f8 <+54>:	movl   $0x1,(%esp)
-   0x080484ff <+61>:	call   0x80483d0 <exit@plt>		; exit(1)
+   0x080484ff <+61>:	call   0x80483d0 <exit@plt>	; exit(1)
 End of assembler dump.
 
 (gdb) disas o
@@ -32,8 +32,8 @@ Dump of assembler code for function o:
    0x080484a4 <+0>:	push   %ebp
    0x080484a5 <+1>:	mov    %esp,%ebp
    0x080484a7 <+3>:	sub    $0x18,%esp
-   0x080484aa <+6>:	movl   $0x80485f0,(%esp)			; /bin/sh
+   0x080484aa <+6>:	movl   $0x80485f0,(%esp)	; /bin/sh
    0x080484b1 <+13>:	call   0x80483b0 <system@plt>
    0x080484b6 <+18>:	movl   $0x1,(%esp)
-   0x080484bd <+25>:	call   0x8048390 <_exit@plt>		; exit(1)
+   0x080484bd <+25>:	call   0x8048390 <_exit@plt>	; exit(1)
 End of assembler dump.
