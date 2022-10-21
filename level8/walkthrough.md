@@ -51,6 +51,21 @@ You can view the asm code translated to C [here](source.c)
 
 ### Steps
 
+The programs run system("/bin/sh") after a serie of conditional jumps.
+It uses fgets() to get input from the user -> we can't overflow this.
+
+- auth  
+malloc() and strcpy() datas following the *auth* into the auth variable.  
+- service  
+strdup() and copies datas following the *service* into the service variable.  
+- reset  
+free(auth)  
+- login  
+calls system("/bin/sh") if auth[32] != 0
+else, calls fwrite.  
+
+It then displays addresses of the variables auth and service.  
+
 ```
 (gdb) run
 Starting program: /home/user/level8/level8 
@@ -97,6 +112,8 @@ Non-debugging symbols:
 0xb7fd4a90  svcauthdes_stats
 (gdb) x/2wx 0x08049aac
 0x8049aac <auth>:	0x0804a008	0x0804a018
+-> We can see that the address of service (0x0804a018) is 16 bytes after the address of auth (0x0804a008)
+
 (gdb) x/16wx 0x0804a008
 0x804a008:	0x00000000	0x00000000	0x00000000	0x00000019
 0x804a018:	0x41414141	0x41414141	0x41414141	0x41414141
