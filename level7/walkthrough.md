@@ -79,11 +79,11 @@ strcpy(0x37614136, NULL <unfinished ...> --> 20 in the Buffer Overflow pattern g
 
 - Build the command  
 
-`
+```
 ./level7 arg1 arg2
 arg1 = x padding to overflow into 3rd malloc, and replace ptr2[1] with address of puts
 arg2 = address of m
-`
+```
 -> so that we have strcpy(dest: &puts, src: &m), so when we call puts("~~"), we will call m in reality.
 
 - Final Command  
